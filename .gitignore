@@ -1,3 +1,7 @@
+# Personal
+.vscode/
+.hidden/
+
 # Prerequisites
 *.d
 
