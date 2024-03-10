@@ -32,14 +32,14 @@ void _fgc_display_real_allocations(void)
     size_t size_allocs = fgc_get_allocated_size(&nb_allocs, &ttl_nb_allocs,
         &ttl_size_allocs);
 
-    write(1, "==\033[2mDEBUG\033[0m== TOTAL   : Allocated ", 38);
-    write_nbr(ttl_size_allocs);
-    write(1, " bytes in ", 10);
+    write(1, "==\033[2mDEBUG\033[0m==   total heap usage: ", 38);
     write_nbr(ttl_nb_allocs);
-    write(1, " allocations.\n", 14);
-    write(1, "==\033[2mDEBUG\033[0m== CURRENT : Allocated ", 38);
-    write_nbr(size_allocs);
-    write(1, " bytes in ", 10);
+    write(1, " allocs, ", 9);
+    write_nbr(ttl_size_allocs);
+    write(1, " bytes allocated\n", 17);
+    write(1, "==\033[2mDEBUG\033[0m== current heap usage: ", 38);
     write_nbr(nb_allocs);
-    write(1, " allocations.\n", 14);
+    write(1, " allocs, ", 9);
+    write_nbr(size_allocs);
+    write(1, " bytes allocated\n", 17);
 }
