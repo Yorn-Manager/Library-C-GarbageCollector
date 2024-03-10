@@ -3,7 +3,7 @@ Sample C Garbage Collector
 
 ---
 
-If you want the fg_cleanup function to be automaticly executed at the end of your program, use
+If you want the `fg_cleanup` function to be automaticly executed at the end of your program, use
 ```c
 #define FGC_SELF_CLEAN
 ```
