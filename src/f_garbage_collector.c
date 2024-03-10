@@ -8,6 +8,8 @@
 #include "f_garbage_collector.h"
 
 static garbage_list garbage_collector_reference = NULL;
+static size_t garbage_collector_total_allocations_nb = 0;
+static size_t garbage_collector_total_allocations_size = 0;
 
 static garbage_list fgcl_create_new(void *ptr, size_t size)
 {
@@ -60,6 +62,8 @@ void *fgc_malloc(size_t size)
 {
     void *obj = malloc(size);
 
+    garbage_collector_total_allocations_nb += 1;
+    garbage_collector_total_allocations_size += size;
     for (size_t i = 0; i < size; i++)
         *(char *)(obj + i) = 0;
     if (!garbage_collector_reference)
@@ -92,15 +96,18 @@ void fgc_free(void *ptr)
     }
 }
 
-size_t fgc_get_allocated_size(size_t *nb_allocations)
+size_t fgc_get_allocated_size(size_t *nb_allocations, size_t *ttl_nb_allocs,
+    size_t *ttl_size_allocs)
 {
     size_t out = 0;
     garbage_list current = garbage_collector_reference;
 
     if (!current)
         return out;
-    if (nb_allocations)
-        *nb_allocations = 0;
+    if (ttl_nb_allocs)
+        *ttl_nb_allocs = garbage_collector_total_allocations_nb;
+    if (ttl_size_allocs)
+        *ttl_size_allocs = garbage_collector_total_allocations_size;
     for (; current->prev; current = current->prev);
     for (; current; current = current->next) {
         out += current->size;

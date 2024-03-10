@@ -26,12 +26,20 @@ void _fgc_free_pointed_data(void *data)
 
 void _fgc_display_real_allocations(void)
 {
+    size_t ttl_nb_allocs = 0;
+    size_t ttl_size_allocs = 0;
     size_t nb_allocs = 0;
-    size_t size_allocs = fgc_get_allocated_size(&nb_allocs);
+    size_t size_allocs = fgc_get_allocated_size(&nb_allocs, &ttl_nb_allocs,
+        &ttl_size_allocs);
 
-    write(1, "==\033[2mDEBUG\033[0m== Allocated ", 29);
+    write(1, "==\033[2mDEBUG\033[0m== TOTAL   : Allocated ", 38);
+    write_nbr(ttl_size_allocs);
+    write(1, " bytes in ", 10);
+    write_nbr(ttl_nb_allocs);
+    write(1, " allocations.\n", 14);
+    write(1, "==\033[2mDEBUG\033[0m== CURRENT : Allocated ", 38);
     write_nbr(size_allocs);
     write(1, " bytes in ", 10);
     write_nbr(nb_allocs);
-    write(1, " allocations.\n", 13);
+    write(1, " allocations.\n", 14);
 }

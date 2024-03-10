@@ -21,8 +21,10 @@ typedef _garbage_list* garbage_list;
 
 void *fgc_malloc(size_t size);
 void fgc_free(void *ptr);
-size_t fgc_get_allocated_size(size_t *nb_allocations);
 void fgc_cleanup(void);
+
+size_t fgc_get_allocated_size(size_t *nb_allocations, size_t *ttl_nb_allocs,
+    size_t *ttl_size_allocs);
 
 void _fgc_free_pointed_data(void *data);
 void _fgc_display_real_allocations(void);
