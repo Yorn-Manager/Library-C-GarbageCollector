@@ -8,7 +8,7 @@
     "build": "make",
     "build_flags": "-lf_gc",
     "build_files": [
-        "libf_gc.a",
+        "libf_gc.a"
     ],
     "export_files": [
         "includes/f_garbage_collector.h"
