@@ -1,6 +1,6 @@
 {
     "type": "library",
-    "language": "C"
+    "language": "C",
     "name": "Library-C-GarbageCollector",
     "description": "Sample garbage collector in C",
     "version": "0.1.0",
