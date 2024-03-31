@@ -1,0 +1,16 @@
+{
+    "type": "library",
+    "language": "C"
+    "name": "Library-C-GarbageCollector",
+    "description": "Sample garbage collector in C",
+    "version": "0.1.0",
+    "dependencies": [],
+    "build": "make",
+    "build_flags": "-lf_gc",
+    "build_files": [
+        "libf_gc.a",
+    ],
+    "export_files": [
+        "includes/f_garbage_collector.h"
+    ]
+}
